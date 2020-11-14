@@ -13,6 +13,7 @@ Let your players create signs with tellraw actions on click.
 - No config, no permissions
 - Supports English, German, French, Spanish, and more to come
 - You can use JSON code from https://minecraftjson.com/
+- Forbids "run command" action, only allows "suggest command"
 
 ### How to use
 
