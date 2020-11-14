@@ -1,5 +1,36 @@
 package hazae41.actions
 
+fun getLang(locale: String): Lang {
+  val first = locale.split("_")[0]
+
+  if (first == "en")
+    return English
+  if (first == "fr")
+    return French
+  if (first == "ca")
+    return Spanish
+  if (first == "es")
+    return Spanish
+  if (first == "pt")
+    return Portuguese
+  if (first == "it")
+    return Italian
+  if (first == "de")
+    return German
+  if (first == "nl")
+    return Dutch
+//  if (first == "ru")
+//    return Russian
+//  if (first == "pl")
+//    return Polish
+//  if (first == "ja")
+//    return Japanese
+//  if (first == "zh")
+//    return SimpleChinese
+
+  return English
+}
+
 interface Lang {
   fun error(): String
   fun cancel(): String
@@ -9,20 +40,6 @@ interface Lang {
   fun noRunCommand(): String
   fun noSign(): String
   fun done(): String
-}
-
-fun getLang(locale: String): Lang {
-  val first = locale.split("_")[0]
-
-  if (first == "fr")
-    return French
-  if (first == "ca")
-    return Spanish
-  if (first == "es")
-    return Spanish
-  if (first == "de")
-    return German
-  return English
 }
 
 object English : Lang {
@@ -58,6 +75,28 @@ object Spanish : Lang {
   override fun done() = "¡Está bien!"
 }
 
+object Italian : Lang {
+  override fun error() = "Si è verificato un errore"
+  override fun cancel() = "annulla"
+  override fun ended() = "Terminato"
+  override fun cancelHint() = "Digitare \"${cancel()}\" per annullare"
+  override fun messagePrompt() = "Scrivi un messaggio. ${cancelHint()}"
+  override fun noRunCommand() = "L'esecuzione dei comandi è vietata! Si prega di utilizzare il suggerimento di comando"
+  override fun noSign() = "Il segno non esiste più"
+  override fun done() = "Fatto!"
+}
+
+object Portuguese : Lang {
+  override fun error() = "Ocorreu um erro"
+  override fun cancel() = "cancelar"
+  override fun ended() = "Terminado"
+  override fun cancelHint() = "Digite \"${cancel()}\" para cancelar."
+  override fun messagePrompt() = "Escrever uma mensagem. ${cancelHint()}"
+  override fun noRunCommand() = "A execução de comandos é proibida! Por favor, use antes a sugestão de comando"
+  override fun noSign() = "O sinal já não existe"
+  override fun done() = "Feito!"
+}
+
 object German : Lang {
   override fun error() = "Ein Fehler ist aufgetreten"
   override fun cancel() = "absagen"
@@ -69,4 +108,15 @@ object German : Lang {
 
   override fun noSign() = "Das Zeichen existiert nicht mehr"
   override fun done() = "Erledigt!"
+}
+
+object Dutch : Lang {
+  override fun error() = "Er is een fout opgetreden"
+  override fun cancel() = "annuleren"
+  override fun ended() = "Eindigt"
+  override fun cancelHint() = "Typ \"${cancel()}\" om te annuleren"
+  override fun messagePrompt() = "Schrijf een bericht. ${cancelHint()}"
+  override fun noRunCommand() = "Lopende commando's zijn verboden! Gebruik in plaats daarvan commandosuggestie"
+  override fun noSign() = "Het bord bestaat niet meer"
+  override fun done() = "Gedaan!"
 }
